@@ -1,0 +1,48 @@
+<div
+  class="card mb-3 position-relative"
+  (mouseenter)="hover = true"
+  (mouseleave)="hover = false"
+>
+  <img
+    *ngIf="product.img"
+    [src]="product.img"
+    class="card-img-top centered-image"
+    alt="{{ product.productName }}"
+  />
+
+  <div class="card-body text-center">
+    <h5 class="card-title">{{ product.productName }}</h5>
+
+    <p class="card-text">{{ product.description }}</p>
+
+    <p class="card-text"><strong>Price:</strong> ${{ product.price }}</p>
+
+    <p class="card-text">
+      <strong>Quantity in Stock:</strong>
+      {{ product.quantityInStock || "Not available" }}
+    </p>
+
+    <button
+      type="button"
+      class="btn btn-primary mx-auto"
+      (click)="showReviews()"
+    >
+      Show Reviews
+    </button>
+  </div>
+
+  <div class="hover-overlay" *ngIf="hover"></div>
+
+  <div class="hover-buttons" *ngIf="hover">
+    <div class="button-container text-center">
+      <button
+        type="button"
+        class="btn btn-secondary mr-2"
+        [routerLink]="[product.id]"
+      >
+        Details
+      </button>
+      <button type="button" class="btn btn-danger">Button 2</button>
+    </div>
+  </div>
+</div>

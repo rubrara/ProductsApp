@@ -1,0 +1,46 @@
+.card {
+  position: relative;
+  overflow: hidden;
+}
+
+.hover-overlay {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background: rgba(255, 255, 255, 0.75); /* Adjust the transparency as needed */
+  z-index: 1; /* Ensure it's above the card content */
+  opacity: 0;
+  transition: opacity 0.3s ease-out;
+}
+
+.hover-buttons {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 2; /* Ensure buttons are above the overlay */
+  opacity: 0;
+  transition: opacity 0.3s ease-out;
+}
+
+.button-container {
+  display: flex;
+}
+
+.button-container button {
+  margin-right: 10px; /* Adjust spacing between buttons as needed */
+}
+
+.card:hover .hover-overlay,
+.card:hover .hover-buttons {
+  opacity: 1;
+}
+
+.centered-image {
+  height: 200px; /* Set your desired height */
+  width: auto;
+  display: block;
+  margin: 0 auto;
+}
