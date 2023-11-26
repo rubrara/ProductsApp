@@ -16,7 +16,11 @@
     </button>
 
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <a class="navbar-brand mt-2 mt-lg-0">
+      <a
+        class="navbar-brand mt-2 mt-lg-0"
+        (click)="onSave()"
+        style="cursor: pointer"
+      >
         <img
           src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTKxNNktnMVr7eUEx88-iU9jM69kK9DUDddVA&usqp=CAU"
           height="30"
@@ -39,12 +43,16 @@
         <a
           data-mdb-dropdown-init
           class="text-reset me-3 dropdown-toggle hidden-arrow"
-          href="#"
+          [routerLink]="['/cart']"
           id="navbarDropdownMenuLink"
           role="button"
           aria-expanded="false"
         >
-          <span class="badge rounded-pill badge-notification bg-danger">1</span>
+          <span
+            class="badge rounded-pill badge-notification bg-danger"
+            *ngIf="cartSize > 0"
+            >{{ cartSize }}</span
+          >
           <i class="fa fa-shopping-cart"></i>
         </a>
         <ul

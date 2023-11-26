@@ -16,4 +16,11 @@ export class ProductItemComponent {
   hover: boolean = false;
 
   showReviews() {}
+  onDetailsClicked() {
+    setTimeout(() => {
+      this.router.navigate([this.index], {
+        relativeTo: this.thisRoute,
+      });
+    }, 200);
+  }
 }

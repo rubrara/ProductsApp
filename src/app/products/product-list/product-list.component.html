@@ -1,4 +1,8 @@
-<div class="row mt-4" style="justify-content: center">
+<div
+  class="row mt-4"
+  style="justify-content: center"
+  *ngIf="products; else loadingTemplate"
+>
   <app-product-item
     class="col-lg-4 col-md-6 col-xs-1"
     style="width: 350px"
@@ -7,3 +11,10 @@
     [index]="i"
   ></app-product-item>
 </div>
+
+<ng-template #loadingTemplate>
+  <div class="loading-container">
+    <div class="spinner"></div>
+    <p>Loading...</p>
+  </div>
+</ng-template>
