@@ -32,4 +32,9 @@ export class CartService {
   getSize() {
     return this.cartSize;
   }
+
+  deleteProductFromCart(index: number) {
+    this.cartProducts.splice(index, 1);
+    this.saveCartFromSubject(this.getCartItems());
+  }
 }

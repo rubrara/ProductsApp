@@ -9,7 +9,14 @@
     *ngFor="let productEl of products; let i = index"
     [product]="productEl"
     [index]="i"
+    (showReview)="activeProduct($event)"
   ></app-product-item>
+
+  <app-reviews
+    *ngIf="!!reviewsToShow"
+    [productName]="product.productName"
+    [reviewList]="reviewsToShow"
+  ></app-reviews>
 </div>
 
 <ng-template #loadingTemplate>

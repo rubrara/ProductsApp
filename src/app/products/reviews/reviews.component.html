@@ -1,1 +1,9 @@
-<p>reviews works!</p>
+<div id="reviewsSidebar">
+  <div id="closeReviewsSidebar" (click)="hideReviewsSidebar()">X</div>
+  <h2 style="margin-bottom: 40px">{{ productName }} Reviews</h2>
+  <div *ngFor="let review of items">
+    <span>@{{ review.userName }}</span>
+    <h5>{{ review.title }}</h5>
+    <p>{{ review.text }}</p>
+  </div>
+</div>

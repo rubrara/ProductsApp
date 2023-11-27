@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Router, RouterLink } from '@angular/router';
 import { ProductService } from '../../services/product.service';
 import { Subscription } from 'rxjs';
@@ -10,7 +10,7 @@ import { CartService } from 'src/app/services/cartService';
   styleUrls: ['./header.component.less'],
   providers: [ProductService],
 })
-export class HeaderComponent implements OnInit {
+export class HeaderComponent implements OnInit, OnDestroy {
   pageTitle = 'Products App';
 
   sub!: Subscription;
@@ -32,9 +32,13 @@ export class HeaderComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.cartService.changedCartProducts.subscribe((products) => {
+    this.sub = this.cartService.changedCartProducts.subscribe((products) => {
       console.log('Cart items updated in header:', products);
       this.cartSize = products.length;
     });
+  }
+
+  ngOnDestroy() {
+    this.sub.unsubscribe();
   }
 }

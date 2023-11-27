@@ -1,14 +1,43 @@
-<div *ngIf="cartProducts.length === 0; else cartItemsTemplate">
-  <p>Your cart is empty.</p>
-</div>
-
-<ng-template #cartItemsTemplate>
-  <div *ngFor="let item of cartProducts" class="cart-item">
-    <div class="product-details">
-      <h2>{{ item.productName }}</h2>
-      <p>{{ item.description }}</p>
-      <p>Price: ${{ item.price }}</p>
-    </div>
-    <img [src]="item.img" alt="{{ item.productName }}" class="product-image" />
+<div class="container">
+  <div *ngIf="cartProducts.length === 0; else cartItemsTemplate">
+    <h2 style="color: gray; margin-left: 50px; margin-top: 50px">
+      Your cart is empty
+    </h2>
   </div>
-</ng-template>
+
+  <ng-template #cartItemsTemplate>
+    <div class="row">
+      <div class="col-xs-12 col-lg-5">
+        <div *ngFor="let item of cartProducts; let i = index" class="cart-item">
+          <div class="product-details">
+            <h2>{{ item.productName }}</h2>
+            <p>{{ item.description }}</p>
+            <p>Price: ${{ item.price }}</p>
+          </div>
+          <img
+            [src]="item.img"
+            alt="{{ item.productName }}"
+            class="product-image"
+          />
+          <button
+            type="button"
+            class="btn btn-danger"
+            style="max-height: 38px; align-self: center; margin-left: 25px"
+            (click)="onDeleteProductFromCart(i)"
+          >
+            X
+          </button>
+        </div>
+      </div>
+
+      <div
+        class="col-xs-12 col-lg-5"
+        style="margin-left: 100px; margin-top: 50px"
+      >
+        <h4>
+          Total: <span style="color: gray"> {{ totalPrice }}</span>
+        </h4>
+      </div>
+    </div>
+  </ng-template>
+</div>
