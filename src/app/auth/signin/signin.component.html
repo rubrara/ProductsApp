@@ -1,0 +1,52 @@
+<!-- In your component template -->
+<form (ngSubmit)="onSignin(f)" #f="ngForm">
+  <div class="form-group">
+    <label for="email">Mail</label>
+    <input
+      type="email"
+      name="email"
+      id="email"
+      class="form-control"
+      ngModel
+      required
+      email
+    />
+    <div style="color: red" *ngIf="f.controls['email']?.hasError('required')">
+      Email is required.
+    </div>
+    <div style="color: red" *ngIf="f.controls['email']?.hasError('email')">
+      Please enter a valid email address.
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="password">Password</label>
+    <input
+      type="password"
+      name="password"
+      id="password"
+      class="form-control"
+      ngModel
+      required
+      minlength="8"
+    />
+    <div
+      style="color: red"
+      *ngIf="f.controls['password']?.hasError('required')"
+    >
+      Password is required.
+    </div>
+    <div
+      style="color: red"
+      *ngIf="f.controls['password']?.hasError('minlength')"
+    >
+      Password must be at least 8 characters long.
+    </div>
+  </div>
+  <button class="btn btn-primary" type="submit" [disabled]="!f.valid">
+    Sign in
+  </button>
+  <br />
+  <h5 *ngIf="badRequest" style="color: red; margin-top: 10px">
+    The user doesnt exist
+  </h5>
+</form>

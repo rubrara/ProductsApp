@@ -3,6 +3,7 @@ import { Router, RouterLink } from '@angular/router';
 import { ProductService } from '../../services/product.service';
 import { Subscription } from 'rxjs';
 import { CartService } from 'src/app/services/cartService';
+import { AuthService } from 'src/app/services/authService';
 
 @Component({
   selector: 'app-header',
@@ -20,7 +21,8 @@ export class HeaderComponent implements OnInit, OnDestroy {
   constructor(
     private router: Router,
     private productService: ProductService,
-    private cartService: CartService
+    private cartService: CartService,
+    private authService: AuthService
   ) {}
 
   productsClicked() {
@@ -31,6 +33,10 @@ export class HeaderComponent implements OnInit, OnDestroy {
     this.productService.saveProducts().subscribe();
   }
 
+  getAuthService() {
+    return this.authService;
+  }
+
   ngOnInit() {
     this.sub = this.cartService.changedCartProducts.subscribe((products) => {
       console.log('Cart items updated in header:', products);
@@ -38,7 +44,16 @@ export class HeaderComponent implements OnInit, OnDestroy {
     });
   }
 
+  onLogoutClicked() {
+    this.authService.logout();
+    this.router.navigate(['/login']);
+  }
+
   ngOnDestroy() {
     this.sub.unsubscribe();
+  }
+
+  onLogoClick() {
+    window.open('https://www.youtube.com/watch?v=dQw4w9WgXcQ', '_blank');
   }
 }

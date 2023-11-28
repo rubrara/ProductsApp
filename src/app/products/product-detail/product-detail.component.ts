@@ -35,7 +35,7 @@ export class ProductDetailComponent implements OnInit, OnDestroy {
     this.sub = this.productService.getProduct(this.id).subscribe((product) => {
       setTimeout(() => {
         if (product) this.product = product;
-      }, 400);
+      }, 300);
     });
   }
 
